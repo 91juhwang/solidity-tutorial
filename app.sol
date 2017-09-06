@@ -1,0 +1,27 @@
+contract Greeter
+{
+    address creator;
+    string greeting;
+
+    function Greeter(string _greeting) public {
+        creator = msg.sender;
+        greeting = _greeting;
+    }
+
+    function greet() constant returns (string) {
+        return greeting;
+    }
+
+    function getBlockNumber() constant returns (uint) {
+        return block.number;
+    }
+
+    function setGreeting(string _newgreeting) {
+        greeting = _newgreeting;
+    }
+
+    function kill() {
+        if (msg.sender == creator)
+            selfdestruct(creator);
+    }
+}
